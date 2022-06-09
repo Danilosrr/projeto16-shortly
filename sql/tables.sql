@@ -13,7 +13,7 @@ CREATE TABLE "users" (
 CREATE TABLE "sessions" (
 	"id" serial NOT NULL,
 	"usersId" int NOT NULL,
-	"token" int NOT NULL UNIQUE,
+	"token" TEXT NOT NULL UNIQUE,
 	"createdAt" timestamp with time zone NOT NULL DEFAULT NOW(),
 	CONSTRAINT "sessions_pk" PRIMARY KEY ("id")
 ) WITH (
