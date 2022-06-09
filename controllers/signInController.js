@@ -7,7 +7,7 @@ export async function signIn (req, res) {
 
     try {
         const queryPassword = await db.query(`
-            SELECT id,"password" FROM "users" WHERE users.email=$1
+            SELECT id,"password" FROM "users" WHERE users.email = $1
         `, [user.email]);
         const { password, id:usersId } = queryPassword.rows[0];
 
