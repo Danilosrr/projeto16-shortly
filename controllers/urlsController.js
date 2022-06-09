@@ -40,11 +40,14 @@ export async function goToUrl (req, res) {
         SELECT url 
         FROM "shortenedUrls" WHERE "shortUrl"=$1
     `, [shortUrl]);
-    console.log(queryUrls)
 
     if (queryUrls.rowCount === 0){
         res.sendStatus(404);
     } else {
+        await db.query(`
+            UPDATE "shortenedUrls" 
+            SET views = views+1 WHERE "shortUrl"=$1
+        `, [shortUrl]);
         res.redirect(queryUrls.rows[0].url);
     };
 };
