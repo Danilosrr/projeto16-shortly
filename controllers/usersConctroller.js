@@ -27,13 +27,13 @@ export async function getUsers (req, res) {
         `, [usersId]);
         
         if (queryUserUrls.rowCount === 0) {
-            res.sendStatus(404);
+            return res.sendStatus(404);
         } else {
-            res.status(200).send(responseQuery(queryUserUrls.rows));  
+            return res.status(200).send(responseQuery(queryUserUrls.rows));  
         };
 
     } else {
-        res.status(401).send('missing authorization')
+        return res.status(401).send('missing authorization')
     }
 };
 

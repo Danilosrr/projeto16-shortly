@@ -16,13 +16,13 @@ export async function signIn (req, res) {
             const insertSession = await db.query(`
                 INSERT INTO "sessions" ("usersId",token,"createdAt") VALUES ($1, $2, DEFAULT) 
             `, [usersId, token]);
-            res.status(200).send(token);
+            return res.status(200).send(token);
         } else {
             console.log(user.password,bcrypt.compareSync(password, user.password))
-            res.sendStatus(401);
+            return res.sendStatus(401);
         }
     } catch (error) {
         console.log(error);
-        res.status(422).send(error.detail);
+        return res.status(422).send(error.detail);
     };
 };

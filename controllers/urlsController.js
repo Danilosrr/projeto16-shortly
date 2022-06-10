@@ -66,14 +66,14 @@ export async function deleteUrl (req, res) {
     `, [urlId]);
 
     if ( queryUserId.rowCount === 0) {
-        res.status(404).send("Url doesnt exist");
+        return res.status(404).send("Url doesnt exist");
     } else if (queryUserId.rows[0].usersId === usersId) {
         await db.query(`
             DELETE FROM "shortenedUrls"
             WHERE id=$1
         `, [urlId]);
-        res.status(204).send("url deleted");
+        return res.status(204).send("url deleted");
     } else {
-        res.sendStatus(401);
+        return res.sendStatus(401);
     };
 };

@@ -19,5 +19,5 @@ export async function getRanking (req, res) {
         ) AS t2 ON t2."usersId" = "users".id
         ORDER BY "visitsCount" DESC LIMIT 10
     `)
-    res.status(200).send(queryRanking.rows);
+    return res.status(200).send(queryRanking.rows);
 }

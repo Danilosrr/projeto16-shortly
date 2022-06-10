@@ -10,12 +10,12 @@ export async function signUp (req, res) {
             await db.query(`
                 INSERT INTO users (email,name,password) VALUES ($1, $2, $3)
             `, [user.email, user.name , hashPassword]);
-            res.sendStatus(201);
+            return res.sendStatus(201);
         } else {
-            res.status(401).send("senhas não coincidem");
+            return res.status(401).send("senhas não coincidem");
         }
     } catch (error) {
         console.log(error);
-        res.status(422).send(error.detail);
+        return res.status(422).send(error.detail);
     };
 };
