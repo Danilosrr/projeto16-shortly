@@ -4,6 +4,6 @@ import { verifyToken } from "../middlewares/tokenMiddleware.js";
 
 const usersRouter = Router();
 
-usersRouter.get('/users/:id', verifyToken, getUsers);
+usersRouter.get('/users', verifyToken, getUsers);
 
 export default usersRouter;

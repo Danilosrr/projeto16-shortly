@@ -2,9 +2,8 @@ import db from "../db.js";
 
 export async function getUsers (req, res) {
     const { id:usersId } = res.locals.user;
-    const id = req.params.id;
 
-    if (usersId == id) {
+    if (!!usersId) {
         const queryUserUrls = await db.query(`
             SELECT t1."usersId", 
             t1."name", 
